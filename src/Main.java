@@ -7,9 +7,7 @@
 
 //import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,12 +18,20 @@ public class Main {
         System.out.println("Hello World!");
         System.out.println("\n");
 
-        char c;
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        do{
-            c=(char) br.read();
-            System.out.println(c);
-        }while(c!='q');
+
+        byte[] bWrite={11,12,13,14,15,16};
+        OutputStream oStream=new FileOutputStream("test.txt");
+        for (byte testByte:bWrite){
+            oStream.write(testByte);
+        }
+        oStream.close();
+
+        InputStream inStream=new FileInputStream("test.txt") ;
+        int size= inStream.available();
+        for (int i=0;i<size;i++){
+            System.out.print(inStream.read()+" ");
+        }
+        inStream.close();
 
 
 /*
