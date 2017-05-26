@@ -21,17 +21,31 @@ public class Main {
 
         byte[] bWrite={11,12,13,14,15,16};
         OutputStream oStream=new FileOutputStream("test.txt");
-        for (byte testByte:bWrite){
+        OutputStreamWriter writer=new OutputStreamWriter(oStream,"UTF-8");
+        writer.append("write in Chines");
+        writer.append("\r\n");
+        writer.append("English");
+        writer.close();
+
+/*        for (byte testByte:bWrite){
             oStream.write(testByte);
         }
-        oStream.close();
+        oStream.close();*/
 
         InputStream inStream=new FileInputStream("test.txt") ;
-        int size= inStream.available();
+        InputStreamReader reader =new InputStreamReader(inStream,"UTF-8");
+        StringBuffer strBuffer=new StringBuffer();
+        while (reader.ready()){
+            strBuffer.append((char)reader.read());
+        }
+        System.out.print(strBuffer.toString());
+        inStream.close();
+
+       /* int size= inStream.available();
         for (int i=0;i<size;i++){
             System.out.print(inStream.read()+" ");
         }
-        inStream.close();
+        inStream.close();*/
 
 
 /*
